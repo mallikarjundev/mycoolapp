@@ -1,5 +1,6 @@
 package com.example.springboot.demo.mycoolapp.rest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,17 @@ public class FunRestController {
     public String sayHello(){
 
         return "Hello World";
+    }
+
+    // injecting properties for team naem
+    @Value("${team.name}")
+    private String teamName;
+
+    //expose new endpoint for "teaminfo"
+    @GetMapping("/teaminfo")
+    public String getTeamInfo() {
+
+        return "Team:" + teamName;
     }
 
     // expose a new endpoint for "workout"
